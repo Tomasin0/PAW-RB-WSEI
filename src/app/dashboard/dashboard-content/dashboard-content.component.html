@@ -1,0 +1,64 @@
+<div class="dashboard-content-wrapper">
+    <div *ngFor="let project of projectList">
+        <div class="project-title">
+            <h1>{{ project.title }}</h1>
+        </div>
+        <div class="project-description">
+            <p>{{ project.description }}</p>
+        </div>
+        <div class="project-details">
+            <div class="functionalities card">
+                <div class="functionalities-header w-100">
+                    <h2 class="titles mx-4">Funkcjonalności</h2>
+                    <div>
+                        <button type="button" class="btn btn-outline-success"
+                            (click)="openAddDialogFunctionalities()">Nowa</button>
+                    </div>
+                </div>
+                <div class="functionalities-name" *ngFor="let functionality of loadProjects">
+                    <div class="functionality-info">
+                        <p class="functionalities-list">{{ functionality.name }}</p>
+                        <p class="functionalities-status">Co jest: {{functionality.state}}</p>
+                    </div>
+                    <div class="functionality-actions">
+                        <button type="button" class="btn btn-outline-success"
+                            (click)=" openAddDialogTasks(functionality.functionalityID)">Dodaj</button>
+                        <button type="button" class="btn btn-outline-warning"
+                            (click)="openEditDialogFunctionalities(functionality)">Edytuj</button>
+                        <button type="button" class="btn btn-outline-danger"
+                            (click)="deleteFunctionality(functionality.functionalityID)">Usuń</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tasks card">
+                <div class="tasks-header w-100">
+                    <h2 class="titles">Zadanie bojowe</h2>
+                </div>
+
+                <div *ngFor="let functionality of loadProjects">
+                    <p class="functionalities-task-list">
+                        {{ functionality.name }}
+                    </p>
+                    <div *ngFor="let task of functionality.tasks">
+                        <div class="task-state-list">
+                            <div>
+                                {{ task.name }}
+                            </div>
+                            <div>
+                                <select class="task-state" [(ngModel)]="task.state" (change)="saveToLocal($event.target, task)">            
+                                    <option value="To Do">Do zrobienia</option>
+                                    <option value="Doing">Robi się</option>
+                                    <option value="Done">Gitarka</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-outline-warning functionality-actions"
+                                (click)="openEditDialogTasks(functionality.functionalityID, task.taskID)">Edytuj</button>
+                            <button type="button" class="btn btn-outline-danger"
+                                (click)="deleteTask(functionality.functionalityID, task.taskID)">Usuń</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

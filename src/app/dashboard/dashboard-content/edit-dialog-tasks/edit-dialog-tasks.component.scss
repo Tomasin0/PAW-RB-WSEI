@@ -1,0 +1,32 @@
+.edit-task-inside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2rem 0 2rem;
+}
+  
+.title {
+  margin: 1rem;
+}
+  
+.edit-task-inside input {
+  font-size: 15px;
+  padding: 10px;
+}
+  
+.edit-task-inside .btn {
+  margin: 1rem;
+  width: 8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-task-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
